@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: api-security-platform
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.apisecurity: DEBUG
