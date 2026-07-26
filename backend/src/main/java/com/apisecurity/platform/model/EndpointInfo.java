@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class EndpointInfo {
 
     // response schemas per status code e.g. {"200": ResponseInfo, "404": ResponseInfo}
     @Builder.Default
-    private Map<String, HttpResponse.ResponseInfo> responses = new java.util.HashMap<>();
+    private Map<String, ResponseInfo> responses = new java.util.HashMap<>();
 
     // request body schema field names (for mass assignment checks)
     @Builder.Default
