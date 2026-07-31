@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Vulnerable Banking API
+  version: 1.0.0
+  description: A sample API with multiple security issues for testing
+
+servers:
+  - url: http://api.vulnerablebank.com   # HTTP not HTTPS - security issue
+
+paths:
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags: [users]
+      security: []    # explicitly no auth - security issue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string   # no pattern validation - security issue
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string   # exposing password - security issue
+                  passwordHash:
+                    type: string   # exposing hash - security issue
+                  ssn:
+                    type: string   # exposing SSN - security issue
+
+  /users:
+    post:
+      summary: Create user
+      tags: [users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string    # mass assignment risk
+                isAdmin:
+                  type: boolean   # mass assignment risk
+      responses:
+        '201':
+          description: User created
+
+  /admin/users:
+    get:
+      summary: Get all users - admin only
+      tags: [admin]
+      # no security at all, no global security either
+      responses:
+        '200':
+          description: List of all users
+
+  /login:
+    post:
+      summary: Login
+      tags: [auth]
+      # no rate limiting extension
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

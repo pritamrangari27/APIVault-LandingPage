@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-security-platform
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/apisecurity?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: apiuser
+    password: apipass123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.apisecurity: DEBUG
+    org.hibernate.SQL: DEBUG
