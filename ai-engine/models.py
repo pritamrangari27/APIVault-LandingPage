@@ -16,3 +16,9 @@ class AnalysisResult(BaseModel):
     endpoint: str = Field(description="The endpoint method and path (e.g., GET /users)")
     findings: List[Finding] = Field(description="List of security vulnerabilities found")
     architecture_suggestions: Optional[str] = Field(description="Overall architectural improvements for this endpoint")
+
+class ScanResponse(BaseModel):
+    scan_id: int
+    filename: str
+    total_endpoints: int
+    results: List[AnalysisResult]
