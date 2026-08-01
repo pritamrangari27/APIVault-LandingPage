@@ -8,7 +8,7 @@ from models import EndpointSpec, AnalysisResult
 load_dotenv()
 
 # Initialize the Gemini model
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
 
 # Use structured output to force Gemini to return JSON matching our Pydantic model
 structured_llm = llm.with_structured_output(AnalysisResult)
