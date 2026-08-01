@@ -4,3 +4,6 @@ langchain
 langchain-google-genai
 pydantic
 python-dotenv
+python-multipart
+pyyaml
+sqlalchemy

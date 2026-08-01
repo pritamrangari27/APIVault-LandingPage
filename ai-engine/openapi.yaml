@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Vulnerable Banking API
+  version: 1.0.0
+paths:
+  /api/v1/transfer:
+    post:
+      summary: Transfer money
+      description: |
+        Code Implementation:
+        ```python
+        def transfer_funds(request):
+            amount = request.body.get("amount")
+            # Vulnerability: No CSRF token, and no authorization check (BOLA/IDOR)
+            db.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE user_id = 1")
+            return "Success"
+        ```
+      responses:
+        '200':
+          description: Transfer successful
+
+  /api/v1/user/profile:
+    put:
+      summary: Update user profile
+      description: |
+        Code Implementation:
+        ```javascript
+        app.put('/profile', (req, res) => {
+            // Vulnerability: Mass Assignment
+            User.update(req.user.id, req.body);
+            res.send("Profile updated");
+        });
+        ```
+      responses:
+        '200':
+          description: Profile updated
+
+  /api/v1/admin/ping:
+    post:
+      summary: Ping an external server
+      description: |
+        Code Implementation:
+        ```python
+        def ping_server(request):
+            ip_address = request.body.get("ip")
+            # Vulnerability: Command Injection
+            os.system(f"ping -c 1 {ip_address}")
+            return "Pinged"
+        ```
+      responses:
+        '200':
+          description: Server pinged
