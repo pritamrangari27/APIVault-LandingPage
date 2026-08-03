@@ -1,3 +1,4 @@
+import asyncio
 import yaml
 import io
 import csv
@@ -50,7 +51,15 @@ async def upload_and_scan_file(file: UploadFile = File(...), db: Session = Depen
     db.commit()
     db.refresh(db_scan)
 
+    async def run_analysis(method, path, endpoint_spec):
+        try:
+            result = await analyze_endpoint(endpoint_spec)
+            return (method, path, result, None)
+        except Exception as e:
+            return (method, path, None, e)
+
     analysis_results = []
+    tasks = []
     
     for path, path_item in parsed_spec.get("paths", {}).items():
         for method, operation in path_item.items():
@@ -61,37 +70,41 @@ async def upload_and_scan_file(file: UploadFile = File(...), db: Session = Depen
             spec_content = yaml.dump(operation)
             endpoint_spec = EndpointSpec(path=path, method=method.upper(), spec_content=spec_content)
             
-            # Run AI analysis
-            try:
-                result = await analyze_endpoint(endpoint_spec)
-            except Exception as e:
-                # If Gemini fails on one endpoint, we shouldn't crash the whole scan
-                print(f"Failed to analyze {method} {path}: {e}")
-                continue
-                
-            analysis_results.append(result)
+            # Add to tasks list instead of running immediately
+            tasks.append(run_analysis(method.upper(), path, endpoint_spec))
+            
+    # Run all analyses concurrently
+    gathered_results = await asyncio.gather(*tasks)
+    
+    # Save results to DB sequentially to avoid session conflicts
+    for method, path, result, error in gathered_results:
+        if error:
+            print(f"Failed to analyze {method} {path}: {error}")
+            continue
+            
+        analysis_results.append(result)
 
-            # Save to DB
-            db_endpoint = db_models.EndpointAnalysis(
-                scan_id=db_scan.id,
-                method=method.upper(),
-                path=path,
-                architecture_suggestions=result.architecture_suggestions
+        # Save to DB
+        db_endpoint = db_models.EndpointAnalysis(
+            scan_id=db_scan.id,
+            method=method,
+            path=path,
+            architecture_suggestions=result.architecture_suggestions
+        )
+        db.add(db_endpoint)
+        db.commit()
+        db.refresh(db_endpoint)
+
+        for finding in result.findings:
+            db_finding = db_models.Vulnerability(
+                endpoint_analysis_id=db_endpoint.id,
+                vulnerability=finding.vulnerability,
+                severity=finding.severity,
+                fix_code=finding.fix_code,
+                explanation=finding.explanation
             )
-            db.add(db_endpoint)
-            db.commit()
-            db.refresh(db_endpoint)
-
-            for finding in result.findings:
-                db_finding = db_models.Vulnerability(
-                    endpoint_analysis_id=db_endpoint.id,
-                    vulnerability=finding.vulnerability,
-                    severity=finding.severity,
-                    fix_code=finding.fix_code,
-                    explanation=finding.explanation
-                )
-                db.add(db_finding)
-            db.commit()
+            db.add(db_finding)
+        db.commit()
 
     return ScanResponse(
         scan_id=db_scan.id,
