@@ -1,0 +1,838 @@
+{
+  "version": "1.0",
+  "planner": "apivault-security-engine",
+  "summary": {
+    "total_endpoints": 8,
+    "static_test_count": 20,
+    "dynamic_test_count": 53
+  },
+  "static_tests": [
+    {
+      "definition_id": "STATIC-TRANSPORT-001",
+      "test": "insecure_http_server",
+      "category": "transport",
+      "severity": "medium",
+      "reason": "Server URL uses insecure HTTP transport: http://api.demo.local",
+      "source": "openapi",
+      "server_url": "http://api.demo.local",
+      "id": "STATIC-TRANSPORT-001"
+    },
+    {
+      "definition_id": "STATIC-AUTH-002",
+      "test": "missing_endpoint_security",
+      "category": "authentication",
+      "severity": "medium",
+      "reason": "Endpoint does not declare an OpenAPI security requirement",
+      "source": "openapi",
+      "endpoint": "/public/health",
+      "method": "GET",
+      "id": "STATIC-AUTH-001"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "high",
+      "reason": "Response schema for status 200 includes potentially sensitive field 'passwordHash'",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "status_code": "200",
+      "field": "passwordHash",
+      "id": "STATIC-DATA-001"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "high",
+      "reason": "Response schema for status 200 includes potentially sensitive field 'ssn'",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "status_code": "200",
+      "field": "ssn",
+      "id": "STATIC-DATA-002"
+    },
+    {
+      "definition_id": "STATIC-SCHEMA-001",
+      "test": "missing_input_constraints",
+      "category": "schema",
+      "severity": "low",
+      "reason": "Parameter 'id' in path lacks explicit validation constraints",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "parameter": "id",
+      "parameter_location": "path",
+      "id": "STATIC-SCHEMA-001"
+    },
+    {
+      "definition_id": "STATIC-AUTH-002",
+      "test": "missing_endpoint_security",
+      "category": "authentication",
+      "severity": "medium",
+      "reason": "Endpoint does not declare an OpenAPI security requirement",
+      "source": "openapi",
+      "endpoint": "/search",
+      "method": "GET",
+      "id": "STATIC-AUTH-002"
+    },
+    {
+      "definition_id": "STATIC-SCHEMA-001",
+      "test": "missing_input_constraints",
+      "category": "schema",
+      "severity": "low",
+      "reason": "Parameter 'q' in query lacks explicit validation constraints",
+      "source": "openapi",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "q",
+      "parameter_location": "query",
+      "id": "STATIC-SCHEMA-002"
+    },
+    {
+      "definition_id": "STATIC-SCHEMA-001",
+      "test": "missing_input_constraints",
+      "category": "schema",
+      "severity": "low",
+      "reason": "Parameter 'limit' in query lacks explicit validation constraints",
+      "source": "openapi",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "limit",
+      "parameter_location": "query",
+      "id": "STATIC-SCHEMA-003"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "medium",
+      "reason": "Request body includes potentially sensitive field 'password'",
+      "source": "openapi",
+      "endpoint": "/users",
+      "method": "POST",
+      "field": "password",
+      "id": "STATIC-DATA-003"
+    },
+    {
+      "definition_id": "STATIC-SCHEMA-001",
+      "test": "missing_input_constraints",
+      "category": "schema",
+      "severity": "low",
+      "reason": "Parameter 'id' in path lacks explicit validation constraints",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "parameter": "id",
+      "parameter_location": "path",
+      "id": "STATIC-SCHEMA-004"
+    },
+    {
+      "definition_id": "STATIC-METHOD-001",
+      "test": "sensitive_http_method",
+      "category": "method",
+      "severity": "high",
+      "reason": "DELETE is a sensitive HTTP method that should be intentionally exposed",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "id": "STATIC-METHOD-001"
+    },
+    {
+      "definition_id": "STATIC-AUTH-002",
+      "test": "missing_endpoint_security",
+      "category": "authentication",
+      "severity": "medium",
+      "reason": "Endpoint does not declare an OpenAPI security requirement",
+      "source": "openapi",
+      "endpoint": "/admin/users",
+      "method": "GET",
+      "id": "STATIC-AUTH-003"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "medium",
+      "reason": "Request body includes potentially sensitive field 'password'",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "field": "password",
+      "id": "STATIC-DATA-004"
+    },
+    {
+      "definition_id": "STATIC-SCHEMA-001",
+      "test": "missing_input_constraints",
+      "category": "schema",
+      "severity": "low",
+      "reason": "Parameter 'id' in path lacks explicit validation constraints",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "parameter": "id",
+      "parameter_location": "path",
+      "id": "STATIC-SCHEMA-005"
+    },
+    {
+      "definition_id": "STATIC-METHOD-001",
+      "test": "sensitive_http_method",
+      "category": "method",
+      "severity": "medium",
+      "reason": "PATCH is a sensitive HTTP method that should be intentionally exposed",
+      "source": "openapi",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "id": "STATIC-METHOD-002"
+    },
+    {
+      "definition_id": "STATIC-AUTH-002",
+      "test": "missing_endpoint_security",
+      "category": "authentication",
+      "severity": "medium",
+      "reason": "Endpoint does not declare an OpenAPI security requirement",
+      "source": "openapi",
+      "endpoint": "/login",
+      "method": "POST",
+      "id": "STATIC-AUTH-004"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "high",
+      "reason": "Response schema for status 200 includes potentially sensitive field 'access_token'",
+      "source": "openapi",
+      "endpoint": "/login",
+      "method": "POST",
+      "status_code": "200",
+      "field": "access_token",
+      "id": "STATIC-DATA-005"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "high",
+      "reason": "Response schema for status 200 includes potentially sensitive field 'refresh_token'",
+      "source": "openapi",
+      "endpoint": "/login",
+      "method": "POST",
+      "status_code": "200",
+      "field": "refresh_token",
+      "id": "STATIC-DATA-006"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "high",
+      "reason": "Response schema for status 200 includes potentially sensitive field 'token_type'",
+      "source": "openapi",
+      "endpoint": "/login",
+      "method": "POST",
+      "status_code": "200",
+      "field": "token_type",
+      "id": "STATIC-DATA-007"
+    },
+    {
+      "definition_id": "STATIC-DATA-001",
+      "test": "potential_sensitive_data_exposure",
+      "category": "data_exposure",
+      "severity": "medium",
+      "reason": "Request body includes potentially sensitive field 'password'",
+      "source": "openapi",
+      "endpoint": "/login",
+      "method": "POST",
+      "field": "password",
+      "id": "STATIC-DATA-008"
+    }
+  ],
+  "dynamic_tests": [
+    {
+      "id": "DYNAMIC-RESPONSE-001",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/public/health",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-002",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/public/health",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-AUTH-001",
+      "category": "authentication",
+      "test": "missing_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked without credentials",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-AUTH-002",
+      "category": "authentication",
+      "test": "invalid_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked with invalid credentials",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-PARAM-001",
+      "category": "input_validation",
+      "test": "invalid_parameter",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter is available for dynamic validation",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-PARAM-002",
+      "category": "input_validation",
+      "test": "boundary_value",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter supports boundary-value testing",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-001",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter can be probed with schema-violating values",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-003",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/users/{id}",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-004",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/users/{id}",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-PARAM-003",
+      "category": "input_validation",
+      "test": "invalid_parameter",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Query parameter is available for dynamic validation",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "q",
+      "parameter_location": "query"
+    },
+    {
+      "id": "DYNAMIC-PARAM-004",
+      "category": "input_validation",
+      "test": "boundary_value",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Query parameter supports boundary-value testing",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "q",
+      "parameter_location": "query"
+    },
+    {
+      "id": "DYNAMIC-PARAM-005",
+      "category": "input_validation",
+      "test": "invalid_parameter",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Query parameter is available for dynamic validation",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "limit",
+      "parameter_location": "query"
+    },
+    {
+      "id": "DYNAMIC-PARAM-006",
+      "category": "input_validation",
+      "test": "boundary_value",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Query parameter supports boundary-value testing",
+      "endpoint": "/search",
+      "method": "GET",
+      "parameter": "limit",
+      "parameter_location": "query"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-005",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/search",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-006",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/search",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-AUTH-003",
+      "category": "authentication",
+      "test": "missing_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked without credentials",
+      "endpoint": "/users",
+      "method": "POST",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-AUTH-004",
+      "category": "authentication",
+      "test": "invalid_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked with invalid credentials",
+      "endpoint": "/users",
+      "method": "POST",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-002",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for schema-based validation",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-PARAM-007",
+      "category": "input_validation",
+      "test": "malformed_input",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for malformed input testing",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-PARAM-008",
+      "category": "input_validation",
+      "test": "missing_required_field",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body can be probed for missing required fields",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-003",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body field 'password' should be included in schema-violation checks",
+      "endpoint": "/users",
+      "method": "POST",
+      "field": "password"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-007",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-008",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-METHOD-001",
+      "category": "method",
+      "test": "method_behavior",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "POST endpoints should be checked for method-specific behavior",
+      "endpoint": "/users",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-AUTH-005",
+      "category": "authentication",
+      "test": "missing_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked without credentials",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-AUTH-006",
+      "category": "authentication",
+      "test": "invalid_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked with invalid credentials",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-PARAM-009",
+      "category": "input_validation",
+      "test": "invalid_parameter",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter is available for dynamic validation",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-PARAM-010",
+      "category": "input_validation",
+      "test": "boundary_value",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter supports boundary-value testing",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-004",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter can be probed with schema-violating values",
+      "endpoint": "/users/{id}",
+      "method": "DELETE",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-009",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/users/{id}",
+      "method": "DELETE"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-010",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/users/{id}",
+      "method": "DELETE"
+    },
+    {
+      "id": "DYNAMIC-METHOD-002",
+      "category": "method",
+      "test": "method_behavior",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "DELETE endpoints should be checked for method-specific behavior",
+      "endpoint": "/users/{id}",
+      "method": "DELETE"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-011",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/admin/users",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-012",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/admin/users",
+      "method": "GET"
+    },
+    {
+      "id": "DYNAMIC-AUTH-007",
+      "category": "authentication",
+      "test": "missing_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked without credentials",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-AUTH-008",
+      "category": "authentication",
+      "test": "invalid_authentication",
+      "severity": "high",
+      "executor": "schemathesis",
+      "reason": "Endpoint declares authentication and should be checked with invalid credentials",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "security_schemes": [
+        "bearerAuth"
+      ]
+    },
+    {
+      "id": "DYNAMIC-PARAM-011",
+      "category": "input_validation",
+      "test": "invalid_parameter",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter is available for dynamic validation",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-PARAM-012",
+      "category": "input_validation",
+      "test": "boundary_value",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter supports boundary-value testing",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-005",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Path parameter can be probed with schema-violating values",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "parameter": "id",
+      "parameter_location": "path"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-006",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for schema-based validation",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-PARAM-013",
+      "category": "input_validation",
+      "test": "malformed_input",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for malformed input testing",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-PARAM-014",
+      "category": "input_validation",
+      "test": "missing_required_field",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body can be probed for missing required fields",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-007",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body field 'password' should be included in schema-violation checks",
+      "endpoint": "/users/{id}",
+      "method": "PATCH",
+      "field": "password"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-013",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-014",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-METHOD-003",
+      "category": "method",
+      "test": "method_behavior",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "PATCH endpoints should be checked for method-specific behavior",
+      "endpoint": "/users/{id}",
+      "method": "PATCH"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-008",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for schema-based validation",
+      "endpoint": "/login",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-PARAM-015",
+      "category": "input_validation",
+      "test": "malformed_input",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body is available for malformed input testing",
+      "endpoint": "/login",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-PARAM-016",
+      "category": "input_validation",
+      "test": "missing_required_field",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body can be probed for missing required fields",
+      "endpoint": "/login",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-SCHEMA-009",
+      "category": "schema",
+      "test": "schema_violation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Request body field 'password' should be included in schema-violation checks",
+      "endpoint": "/login",
+      "method": "POST",
+      "field": "password"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-015",
+      "category": "response",
+      "test": "unexpected_status_code",
+      "severity": "low",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow status-code validation",
+      "endpoint": "/login",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-RESPONSE-016",
+      "category": "response",
+      "test": "response_schema_validation",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "Declared responses allow response schema validation",
+      "endpoint": "/login",
+      "method": "POST"
+    },
+    {
+      "id": "DYNAMIC-METHOD-004",
+      "category": "method",
+      "test": "method_behavior",
+      "severity": "medium",
+      "executor": "schemathesis",
+      "reason": "POST endpoints should be checked for method-specific behavior",
+      "endpoint": "/login",
+      "method": "POST"
+    }
+  ]
+}

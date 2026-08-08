@@ -1,0 +1,254 @@
+{
+  "title": "Demo Banking API",
+  "version": "1.0.0",
+  "description": "Parsed OpenAPI output used by the security engine demo",
+  "serverUrls": [
+    "http://api.demo.local",
+    "https://api.demo.local"
+  ],
+  "securitySchemes": {
+    "bearerAuth": "http"
+  },
+  "globalSecurity": [],
+  "endpoints": [
+    {
+      "path": "/public/health",
+      "method": "GET",
+      "summary": "Health check",
+      "description": "Public health probe",
+      "tags": ["public"],
+      "hasAuthentication": false,
+      "securitySchemes": [],
+      "parameters": [],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["status", "uptime"],
+          "fieldTypes": {
+            "status": "string",
+            "uptime": "integer"
+          }
+        }
+      },
+      "requestBodyFields": [],
+      "hasRequestBody": false,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/users/{id}",
+      "method": "GET",
+      "summary": "Get user by ID",
+      "description": "Returns a user record",
+      "tags": ["users"],
+      "hasAuthentication": true,
+      "securitySchemes": ["bearerAuth"],
+      "parameters": [
+        {
+          "name": "id",
+          "location": "path",
+          "required": true,
+          "type": "string",
+          "pattern": null,
+          "format": null
+        }
+      ],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["id", "name", "email", "passwordHash", "ssn"],
+          "fieldTypes": {
+            "id": "string",
+            "name": "string",
+            "email": "string",
+            "passwordHash": "string",
+            "ssn": "string"
+          }
+        }
+      },
+      "requestBodyFields": [],
+      "hasRequestBody": false,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/search",
+      "method": "GET",
+      "summary": "Search users",
+      "description": "Public search endpoint",
+      "tags": ["search"],
+      "hasAuthentication": false,
+      "securitySchemes": [],
+      "parameters": [
+        {
+          "name": "q",
+          "location": "query",
+          "required": true,
+          "type": "string",
+          "pattern": null,
+          "format": null
+        },
+        {
+          "name": "limit",
+          "location": "query",
+          "required": false,
+          "type": "integer",
+          "pattern": null,
+          "format": null
+        }
+      ],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["items", "count"],
+          "fieldTypes": {
+            "items": "array",
+            "count": "integer"
+          }
+        }
+      },
+      "requestBodyFields": [],
+      "hasRequestBody": false,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/users",
+      "method": "POST",
+      "summary": "Create user",
+      "description": "Creates a new user account",
+      "tags": ["users"],
+      "hasAuthentication": true,
+      "securitySchemes": ["bearerAuth"],
+      "parameters": [],
+      "responses": {
+        "201": {
+          "statusCode": "201",
+          "fieldNames": ["id", "name", "email"],
+          "fieldTypes": {
+            "id": "string",
+            "name": "string",
+            "email": "string"
+          }
+        }
+      },
+      "requestBodyFields": ["name", "email", "password", "role", "isAdmin"],
+      "hasRequestBody": true,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/users/{id}",
+      "method": "DELETE",
+      "summary": "Delete user",
+      "description": "Deletes a user account",
+      "tags": ["users"],
+      "hasAuthentication": true,
+      "securitySchemes": ["bearerAuth"],
+      "parameters": [
+        {
+          "name": "id",
+          "location": "path",
+          "required": true,
+          "type": "string",
+          "pattern": null,
+          "format": null
+        }
+      ],
+      "responses": {
+        "204": {
+          "statusCode": "204",
+          "fieldNames": [],
+          "fieldTypes": {}
+        }
+      },
+      "requestBodyFields": [],
+      "hasRequestBody": false,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/admin/users",
+      "method": "GET",
+      "summary": "Admin user listing",
+      "description": "Missing endpoint security metadata in this demo fixture",
+      "tags": ["admin"],
+      "hasAuthentication": false,
+      "securitySchemes": [],
+      "parameters": [],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["users"],
+          "fieldTypes": {
+            "users": "array"
+          }
+        }
+      },
+      "requestBodyFields": [],
+      "hasRequestBody": false,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/users/{id}",
+      "method": "PATCH",
+      "summary": "Update user",
+      "description": "Partially updates a user",
+      "tags": ["users"],
+      "hasAuthentication": true,
+      "securitySchemes": ["bearerAuth"],
+      "parameters": [
+        {
+          "name": "id",
+          "location": "path",
+          "required": true,
+          "type": "string",
+          "pattern": null,
+          "format": null
+        }
+      ],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["id", "email", "updatedAt"],
+          "fieldTypes": {
+            "id": "string",
+            "email": "string",
+            "updatedAt": "string"
+          }
+        }
+      },
+      "requestBodyFields": ["email", "password"],
+      "hasRequestBody": true,
+      "hasRateLimit": false,
+      "deprecated": false
+    },
+    {
+      "path": "/login",
+      "method": "POST",
+      "summary": "Login",
+      "description": "Public login endpoint that returns tokens",
+      "tags": ["auth"],
+      "hasAuthentication": false,
+      "securitySchemes": [],
+      "parameters": [],
+      "responses": {
+        "200": {
+          "statusCode": "200",
+          "fieldNames": ["access_token", "refresh_token", "token_type", "expires_in"],
+          "fieldTypes": {
+            "access_token": "string",
+            "refresh_token": "string",
+            "token_type": "string",
+            "expires_in": "integer"
+          }
+        }
+      },
+      "requestBodyFields": ["username", "password"],
+      "hasRequestBody": true,
+      "hasRateLimit": false,
+      "deprecated": false
+    }
+  ]
+}
