@@ -1,8 +1,8 @@
 package com.apisecurity.platform.controller;
 
 import com.apisecurity.platform.model.ApiResponse;
-import com.apisecurity.platform.model.ScanResult;
 import com.apisecurity.platform.model.dto.AnalysisResponse;
+import com.apisecurity.platform.model.dto.ScanSummaryDto;
 import com.apisecurity.platform.service.AnalysisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -104,13 +104,11 @@ public class AnalysisController {
      * Returns all past scans (will be filtered by user in Phase 2).
      */
     @GetMapping("/scans")
-    public ResponseEntity<ApiResponse<List<ScanResult>>> getAllScans() {
+    public ResponseEntity<ApiResponse<List<ScanSummaryDto>>> getAllScans() {
 
-        List<ScanResult> scans = analysisService.getAllScans();
-
+        List<ScanSummaryDto> scans = analysisService.getAllScans();
         return ResponseEntity.ok(
-                ApiResponse.success(
-                        "Found " + scans.size() + " scans", scans));
+                ApiResponse.success("Found " + scans.size() + " scans", scans));
     }
 
     /**

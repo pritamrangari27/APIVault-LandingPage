@@ -6,6 +6,7 @@ import com.apisecurity.platform.model.ParsedSpec;
 import com.apisecurity.platform.model.ScanResult;
 import com.apisecurity.platform.model.User;
 import com.apisecurity.platform.model.dto.AnalysisResponse;
+import com.apisecurity.platform.model.dto.ScanSummaryDto;
 import com.apisecurity.platform.repository.ScanResultRepository;
 import com.apisecurity.platform.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -98,8 +99,11 @@ public class AnalysisService {
     /**
      * Get all scans — later this will be filtered by user.
      */
-    public List<ScanResult> getAllScans() {
-        return scanResultRepository.findAll();
+    public List<ScanSummaryDto> getAllScans() {
+        return scanResultRepository.findAll()
+                .stream()
+                .map(ScanSummaryDto::from)
+                .toList();
     }
 
 

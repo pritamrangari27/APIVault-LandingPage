@@ -83,6 +83,12 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
+
+		<!-- Teaches Jackson how to handle Hibernate lazy proxies -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate6</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
