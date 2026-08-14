@@ -23,6 +23,11 @@ spring:
       max-file-size: 5MB
       max-request-size: 5MB
 
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+
 server:
   port: 8080
 
