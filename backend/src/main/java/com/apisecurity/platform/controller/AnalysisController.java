@@ -41,10 +41,7 @@ public class AnalysisController {
      * - Key: file (type: File)
      * - Value: select your .yaml or .json file
      */
-    @PostMapping(
-            value = "/analyze",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
+    @PostMapping(value = "/analyze")
     public ResponseEntity<ApiResponse<AnalysisResponse>> analyze(
             @RequestParam("file") MultipartFile file) {
 
