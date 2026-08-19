@@ -4,6 +4,11 @@ import com.apisecurity.platform.model.ApiResponse;
 import com.apisecurity.platform.model.dto.AnalysisResponse;
 import com.apisecurity.platform.model.dto.ScanSummaryDto;
 import com.apisecurity.platform.service.AnalysisService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,6 +29,10 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Slf4j
+@Tag(
+        name = "Security Analysis",
+        description = "Upload OpenAPI specs and get detailed security reports"
+)
 public class AnalysisController {
 
     private final AnalysisService analysisService;
@@ -41,6 +50,28 @@ public class AnalysisController {
      * - Key: file (type: File)
      * - Value: select your .yaml or .json file
      */
+
+    @Operation(
+            summary = "Analyze an OpenAPI spec for security vulnerabilities",
+            description = "Upload a .yaml, .yml, or .json OpenAPI/Swagger spec file. " +
+                    "Returns a full security report with findings sorted by " +
+                    "severity, fix suggestions, and an overall security score."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "201",
+                    description = "Analysis complete — report returned",
+                    content = @Content(schema = @Schema(implementation = AnalysisResponse.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "400",
+                    description = "Invalid file type, file too large, or invalid spec content"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "500",
+                    description = "Unexpected server error"
+            )
+    })
     @PostMapping(value = "/analyze")
     public ResponseEntity<ApiResponse<AnalysisResponse>> analyze(
             @RequestParam("file") MultipartFile file) {
@@ -83,6 +114,11 @@ public class AnalysisController {
      *
      * Returns details of a specific past scan.
      */
+
+    @Operation(
+            summary = "Get a specific scan by ID",
+            description = "Returns the stored result of a previous analysis."
+    )
     @GetMapping("/scans/{id}")
     public ResponseEntity<ApiResponse<AnalysisResponse>> getScan(
             @PathVariable Long id) {
@@ -100,6 +136,11 @@ public class AnalysisController {
      *
      * Returns all past scans (will be filtered by user in Phase 2).
      */
+
+    @Operation(
+            summary = "List all past scans",
+            description = "Returns all scans. Will be filtered by user in Phase 2."
+    )
     @GetMapping("/scans")
     public ResponseEntity<ApiResponse<List<ScanSummaryDto>>> getAllScans() {
 
@@ -114,6 +155,7 @@ public class AnalysisController {
      * Simple health check. Returns 200 if the app is running.
      * Used by Kubernetes probes later.
      */
+    @Operation(summary = "Health check", description = "Returns UP if the service is running.")
     @GetMapping("/health")
     public ResponseEntity<ApiResponse<String>> health() {
         return ResponseEntity.ok(

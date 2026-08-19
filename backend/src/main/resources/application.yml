@@ -36,3 +36,16 @@ logging:
   level:
     com.apisecurity: DEBUG
     org.hibernate.SQL: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    try-it-out-enabled: true    # enables the "Try it out" button
+  info:
+    title: ApiVault
+    description: Smart API Security Testing Platform
+    version: 1.0.0
