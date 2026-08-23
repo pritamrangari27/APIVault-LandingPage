@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/apisecurity_test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: apiuser
+    password: apipass123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop    # creates tables before tests, drops after
+    show-sql: false            # less noise in test output
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 5MB
