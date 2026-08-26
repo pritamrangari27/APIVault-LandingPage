@@ -7,21 +7,13 @@ export default function Landing() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-16 pb-20 lg:pt-24 lg:pb-32 px-6 overflow-hidden">
         {/* Subtle background gradient mesh */}
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] opacity-30 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto text-center relative z-10 flex flex-col items-center">
           
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-white/10 text-xs text-zinc-300 mb-8 backdrop-blur-md"
-          >
-            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            APIVault v2.0 is now generally available
-          </motion.div>
+
           
           <motion.h1 
             initial={{ opacity: 0, y: 10 }}
