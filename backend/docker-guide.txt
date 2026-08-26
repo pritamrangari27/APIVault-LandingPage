@@ -1,0 +1,19 @@
+Steps :
+
+1. Start MySQL -
+docker-compose up -d
+
+Verify it's running-
+docker ps
+
+2. Connect to MySQL and verify -
+docker exec -it apisecurity-mysql mysql -u apiuser -papipass123 apisecurity
+
+confirm the database exists -
+SHOW DATABASES;
+
+3. stop container
+docker-compose stop
+
+Or stop and remove container
+docker-compose down

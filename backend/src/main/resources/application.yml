@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: api-security-platform
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/apisecurity?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: apiuser
+    password: apipass123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 5MB
+      file-size-threshold: 2KB
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.apisecurity: DEBUG
+    org.hibernate.SQL: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    try-it-out-enabled: true    # enables the "Try it out" button
+  info:
+    title: ApiVault
+    description: Smart API Security Testing Platform
+    version: 1.0.0

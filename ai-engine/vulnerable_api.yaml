@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Vulnerable User API
+  description: A sample API for testing the AI security engine. It contains deliberate vulnerabilities.
+  version: 1.0.0
+servers:
+  - url: http://api.example.com/v1
+
+paths:
+  /users/{id}:
+    get:
+      summary: Get user details by ID
+      description: Returns user details. Vulnerable to Broken Object Level Authorization (BOLA) and missing authentication.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+    
+    put:
+      summary: Update user details
+      description: Updates user information. Vulnerable to Mass Assignment.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                role: 
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+
+  /users/search:
+    get:
+      summary: Search for users
+      description: Searches users by username. Vulnerable to SQL Injection if implemented poorly.
+      parameters:
+        - name: username
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results
