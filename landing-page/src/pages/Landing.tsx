@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, Lock, Database, Globe, CheckCircle2, FileText, Bell } from 'lucide-react';
+import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, CheckCircle2, FileText, Bell } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
