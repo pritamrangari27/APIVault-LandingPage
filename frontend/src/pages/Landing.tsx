@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle } from 'lucide-react';
+import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -165,6 +165,83 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* Engine Sequence Section */}
+      <section id="how-it-works" className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/3">
+            <div className="sticky top-32">
+              <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Dual-layer Engine</h2>
+              <p className="text-zinc-400 font-light text-lg mb-8">
+                A sequential pipeline that processes your API spec with uncompromising precision. Fast enough for CI/CD, smart enough for business logic.
+              </p>
+              
+              <div className="rounded-xl border border-white/10 bg-[#050505] p-4 font-mono text-[11px] sm:text-xs text-zinc-400 leading-relaxed overflow-hidden relative h-[180px]">
+                <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none z-10" />
+                <div className="flex gap-2 mb-3 items-center text-zinc-500 border-b border-white/5 pb-2">
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>engine.log</span>
+                </div>
+                <motion.div 
+                  initial={{ y: 0 }}
+                  animate={{ y: -120 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="space-y-1.5 opacity-80"
+                >
+                  <div className="text-emerald-400">[info] Initialize APIVault v2.0</div>
+                  <div>[info] Loading openapi.json (4.2MB)</div>
+                  <div>[info] Parsing 124 endpoints...</div>
+                  <div>[info] Normalizing schema definitions</div>
+                  <div className="text-emerald-400">[info] Ingestion complete (42ms)</div>
+                  <div>[info] Running OWASP Rule Engine...</div>
+                  <div className="text-amber-400">[warn] Unauthenticated route: /metrics</div>
+                  <div>[info] Static analysis complete (105ms)</div>
+                  <div>[info] Running AI Heuristics Engine...</div>
+                  <div className="text-rose-400">[crit] BOLA vulnerability found in /users/&#123;id&#125;</div>
+                  <div>[info] Generating remediation patch</div>
+                  <div className="text-emerald-400">[info] Audit complete. 1 issue found.</div>
+                  <br/>
+                  <div className="text-emerald-400">[info] Initialize APIVault v2.0</div>
+                  <div>[info] Loading openapi.json (4.2MB)</div>
+                  <div>[info] Parsing 124 endpoints...</div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="lg:w-2/3 relative">
+            {/* Vertical Line */}
+            <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-emerald-500/20 via-white/10 to-transparent hidden md:block" />
+            
+            <div className="space-y-12">
+              <StepCard 
+                number="01"
+                title="Schema Ingestion"
+                description="We parse your OpenAPI / Swagger spec, normalizing endpoints, parameters, and security schemes into our internal graph representation."
+                icon={<Layers className="w-5 h-5 text-zinc-400" />}
+              />
+              <StepCard 
+                number="02"
+                title="Deterministic Static Analysis"
+                description="Our Java Spring engine evaluates the graph against hundreds of structural rules mapped to the OWASP API Security Top 10. Guaranteed zero false positives."
+                icon={<Code2 className="w-5 h-5 text-emerald-500" />}
+              />
+              <StepCard 
+                number="03"
+                title="AI Heuristic Judgement"
+                description="A Python-based AI layer analyzes the context of your endpoints for complex business logic flaws like Broken Object Level Authorization (BOLA)."
+                icon={<Cpu className="w-5 h-5 text-blue-400" />}
+              />
+              <StepCard 
+                number="04"
+                title="Remediation Output"
+                description="Actionable findings are returned instantly with exact line numbers and auto-fix code snippets that can be merged directly into your repository."
+                icon={<Terminal className="w-5 h-5 text-purple-400" />}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* Footer CTA */}
       <section className="py-24 px-6 border-t border-white/5 relative overflow-hidden">
@@ -197,6 +274,32 @@ function FeatureCard({ icon, title, description, to = "/docs", highlight = false
       <Link to={to} className="mt-auto flex items-center text-sm font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors cursor-pointer w-fit">
         Explore feature <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
       </Link>
+    </div>
+  );
+}
+
+function StepCard({ number, title, description, icon }: { number: string, title: string, description: string, icon: React.ReactNode }) {
+  return (
+    <div className="relative md:pl-20 group">
+      {/* Node on the line */}
+      <div className="absolute left-[23px] top-8 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#0C0C0C] border border-zinc-600 group-hover:border-emerald-500 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.5)] transition-all duration-300 hidden md:block z-10" />
+      
+      <div className="premium-card p-6 flex flex-col sm:flex-row gap-6 relative overflow-hidden border-l-2 border-l-transparent group-hover:border-l-emerald-500 transition-all duration-300">
+        {/* Subtle hover gradient */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.02] rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        
+        <div className="flex-shrink-0 pt-1">
+          <div className="text-xs font-mono text-zinc-500 mb-3">{number}</div>
+          <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-300">
+            {icon}
+          </div>
+        </div>
+        
+        <div>
+          <h3 className="text-lg font-medium text-zinc-100 mb-2">{title}</h3>
+          <p className="text-zinc-400 text-sm leading-relaxed font-light">{description}</p>
+        </div>
+      </div>
     </div>
   );
 }
