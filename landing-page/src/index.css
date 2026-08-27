@@ -40,15 +40,15 @@ body {
 
 /* Premium utilities */
 .glass-nav {
-  @apply bg-oled/70 backdrop-blur-md border-b border-white/5;
+  @apply bg-oled/70 backdrop-blur-md border-b border-zinc-800;
 }
 
 .premium-card {
-  @apply bg-surface border border-white/10 rounded-2xl transition-all duration-300;
+  @apply bg-surface border border-zinc-800 rounded-2xl transition-all duration-300;
 }
 
 .premium-card:hover {
-  @apply border-white/20 bg-surface-hover;
+  @apply border-zinc-500 bg-surface-hover;
 }
 
 .glow-text {
