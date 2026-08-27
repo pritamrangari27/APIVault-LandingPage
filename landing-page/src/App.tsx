@@ -10,6 +10,7 @@ import Terms from './pages/Terms';
 import OwaspFeature from './pages/OwaspFeature';
 import StaticEngineFeature from './pages/StaticEngineFeature';
 import AiFeature from './pages/AiFeature';
+import AnalyzePage from './pages/AnalyzePage';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -69,6 +70,7 @@ function App() {
           <Route path="/feature/owasp" element={<OwaspFeature />} />
           <Route path="/feature/static-engine" element={<StaticEngineFeature />} />
           <Route path="/feature/ai-judgment" element={<AiFeature />} />
+          <Route path="/analyze" element={<AnalyzePage />} />
         </Routes>
       </main>
 

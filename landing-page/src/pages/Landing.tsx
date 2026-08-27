@@ -40,10 +40,10 @@ export default function Landing() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
           >
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-oled px-6 py-3 rounded-xl text-sm font-semibold transition-all emerald-glow">
+            <Link to="/analyze" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-oled px-6 py-3 rounded-xl text-sm font-semibold transition-all emerald-glow">
               Analyze API Spec
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
             <Link 
               to="/docs"
               className="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-100 px-6 py-3 rounded-xl text-sm font-medium transition-all"
