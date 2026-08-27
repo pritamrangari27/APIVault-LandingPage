@@ -46,7 +46,7 @@ export default function Landing() {
             </Link>
             <Link 
               to="/docs"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-100 px-6 py-3 rounded-xl text-sm font-medium transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-100 px-6 py-3 rounded-xl text-sm font-medium transition-all"
             >
               Read Documentation
             </Link>
@@ -60,18 +60,18 @@ export default function Landing() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="max-w-5xl mx-auto mt-24 relative z-10"
         >
-          <div className="rounded-2xl border border-white/10 bg-[#0C0C0C] overflow-hidden shadow-2xl flex flex-col font-mono text-sm leading-relaxed text-zinc-300">
+          <div className="rounded-2xl border border-zinc-800 bg-surface overflow-hidden shadow-2xl flex flex-col font-mono text-sm leading-relaxed text-zinc-300">
             {/* IDE Header */}
-            <div className="h-12 bg-[#050505] border-b border-white/5 flex items-center px-4 justify-between">
+            <div className="h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 justify-between">
               <div className="flex items-center gap-2">
                 <div className="flex gap-1.5 mr-4">
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                 </div>
-                <div className="flex bg-[#0C0C0C] border-t border-x border-white/5 px-4 py-1.5 rounded-t-lg items-center gap-2 translate-y-[6px]">
+                <div className="flex bg-surface border-t border-x border-zinc-800 px-4 py-1.5 rounded-t-lg items-center gap-2 translate-y-[6px]">
                   <FileCode2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="text-xs font-medium text-zinc-200">openapi.json</span>
+                  <span className="text-xs font-medium text-zinc-300">openapi.json</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -110,7 +110,7 @@ export default function Landing() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.2 }}
-                className="absolute top-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-1/3 bg-[#0A0A0A] border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[90%] sm:w-[320px] backdrop-blur-xl z-20"
+                className="absolute top-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-1/3 bg-surface border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[90%] sm:w-[320px] backdrop-blur-xl z-20"
               >
                 <div className="flex gap-3">
                   <div className="mt-0.5">
@@ -122,10 +122,10 @@ export default function Landing() {
                       Endpoint <code className="text-rose-400 bg-rose-500/10 px-1 py-0.5 rounded">GET /users/&#123;id&#125;</code> exposes resources without validating ownership parameters.
                     </p>
                     <div className="flex gap-2">
-                      <button className="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs px-3 py-1.5 rounded-md font-sans transition-colors">
+                      <button className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs px-3 py-1.5 rounded-md font-sans transition-colors">
                         View Trace
                       </button>
-                      <button className="bg-rose-500 hover:bg-rose-600 text-white text-xs px-3 py-1.5 rounded-md font-sans font-medium transition-colors">
+                      <button className="bg-rose-500 hover:bg-rose-600 text-zinc-100 text-xs px-3 py-1.5 rounded-md font-sans font-medium transition-colors">
                         Auto-Fix
                       </button>
                     </div>
@@ -138,7 +138,7 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+      <section id="features" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Enterprise Grade Scanning</h2>
@@ -170,7 +170,7 @@ export default function Landing() {
       </section>
 
       {/* Engine Sequence Section */}
-      <section id="how-it-works" className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+      <section id="how-it-works" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/3">
             <div className="sticky top-32">
@@ -179,9 +179,9 @@ export default function Landing() {
                 A sequential pipeline that processes your API spec with uncompromising precision. Fast enough for CI/CD, smart enough for business logic.
               </p>
               
-              <div className="rounded-xl border border-white/10 bg-[#050505] p-4 font-mono text-[11px] sm:text-xs text-zinc-400 leading-relaxed overflow-hidden relative h-[180px]">
-                <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none z-10" />
-                <div className="flex gap-2 mb-3 items-center text-zinc-500 border-b border-white/5 pb-2">
+              <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-4 font-mono text-[11px] sm:text-xs text-zinc-400 leading-relaxed overflow-hidden relative h-[180px]">
+                <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none z-10" />
+                <div className="flex gap-2 mb-3 items-center text-zinc-500 border-b border-zinc-800 pb-2">
                   <Terminal className="w-3.5 h-3.5" />
                   <span>engine.log</span>
                 </div>
@@ -247,7 +247,7 @@ export default function Landing() {
       </section>
       
       {/* Vulnerability Coverage Section */}
-      <section className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+      <section className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="md:w-1/2">
@@ -264,8 +264,8 @@ export default function Landing() {
             </div>
             <div className="md:w-1/2 w-full relative">
                <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/20 to-transparent blur-3xl" />
-               <div className="premium-card p-6 md:p-8 border-white/10 bg-[#0C0C0C] shadow-2xl relative z-10 rounded-2xl">
-                 <div className="flex items-center justify-between border-b border-white/5 pb-5 mb-6">
+               <div className="premium-card p-6 md:p-8 border-zinc-800 bg-surface shadow-2xl relative z-10 rounded-2xl">
+                 <div className="flex items-center justify-between border-b border-zinc-800 pb-5 mb-6">
                     <div className="text-sm font-medium text-zinc-300 flex items-center gap-2">
                       <Shield className="w-4 h-4 text-zinc-400" />
                       OWASP API Security Top 10
@@ -286,7 +286,7 @@ export default function Landing() {
       </section>
 
       {/* Integrations Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#0A0A0A] border-t border-white/5 overflow-hidden">
+      <section className="py-24 px-6 relative z-10 bg-surface border-t border-zinc-800 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
@@ -305,7 +305,7 @@ export default function Landing() {
       </section>
 
       {/* Compliance Section */}
-      <section className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+      <section className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-16 items-center">
           <div className="md:w-1/2">
             <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Automated Compliance Reporting</h2>
@@ -323,7 +323,7 @@ export default function Landing() {
             </button>
           </div>
           <div className="md:w-1/2 w-full">
-            <div className="premium-card p-6 border-white/10 bg-[#0C0C0C] relative overflow-hidden group shadow-2xl rounded-2xl">
+            <div className="premium-card p-6 border-zinc-800 bg-surface relative overflow-hidden group shadow-2xl rounded-2xl">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <FileText className="w-32 h-32 text-emerald-500" />
               </div>
@@ -331,19 +331,19 @@ export default function Landing() {
                 <Shield className="w-4 h-4 text-emerald-500" /> Compliance Checklist Status
               </h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                <div className="flex justify-between items-center pb-3 border-b border-zinc-800">
                   <span className="text-zinc-400 text-sm">Data Encryption in Transit</span>
                   <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded">
                     <CheckCircle2 className="w-3 h-3" /> PASS
                   </div>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                <div className="flex justify-between items-center pb-3 border-b border-zinc-800">
                   <span className="text-zinc-400 text-sm">Strong Authentication Mechanisms</span>
                   <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded">
                     <CheckCircle2 className="w-3 h-3" /> PASS
                   </div>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                <div className="flex justify-between items-center pb-3 border-b border-zinc-800">
                   <span className="text-zinc-400 text-sm">Access Control (BOLA/BFLA)</span>
                   <div className="flex items-center gap-1.5 text-rose-400 text-xs font-medium bg-rose-500/10 px-2 py-1 rounded">
                     <AlertCircle className="w-3 h-3" /> 2 ISSUES
@@ -362,7 +362,7 @@ export default function Landing() {
       </section>
 
       {/* Alerting Section */}
-      <section className="py-24 px-6 relative z-10 bg-[#0A0A0A] border-t border-white/5 overflow-hidden">
+      <section className="py-24 px-6 relative z-10 bg-surface border-t border-zinc-800 overflow-hidden">
          <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Real-time Alerting & Remediation</h2>
             <p className="text-zinc-400 max-w-2xl mx-auto font-light text-lg mb-16">
@@ -395,7 +395,7 @@ export default function Landing() {
 
 function ComplianceBadge({ name }: { name: string }) {
   return (
-    <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-zinc-900 border border-white/5 hover:border-emerald-500/30 transition-colors">
+    <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/30 transition-colors">
       <span className="text-zinc-300 text-sm font-medium">{name}</span>
       <CheckCircle2 className="w-4 h-4 text-emerald-500" />
     </div>
@@ -404,8 +404,8 @@ function ComplianceBadge({ name }: { name: string }) {
 
 function AlertingFeature({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
   return (
-    <div className="premium-card p-6 flex flex-col text-left group border-white/5 hover:border-white/10 transition-colors">
-      <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+    <div className="premium-card p-6 flex flex-col text-left group border-zinc-800 hover:border-zinc-800 transition-colors">
+      <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
         {icon}
       </div>
       <h3 className="text-zinc-100 font-medium mb-2">{title}</h3>
@@ -416,7 +416,7 @@ function AlertingFeature({ icon, title, description }: { icon: React.ReactNode, 
 
 function IntegrationBadge({ name, icon, color }: { name: string, icon: React.ReactNode, color: string }) {
   return (
-    <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-[#0F0F0F] border border-white/5 hover:border-white/10 hover:bg-[#151515] transition-all cursor-pointer group shadow-lg">
+    <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-surface-hover border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-all cursor-pointer group shadow-lg">
       <div className={`${color} group-hover:scale-110 transition-transform duration-300`}>
         {icon}
       </div>
@@ -464,7 +464,7 @@ function CoverageBar({ name, percent }: { name: string, percent: number }) {
 function FeatureCard({ icon, title, description, to = "/docs", highlight = false }: { icon: React.ReactNode, title: string, description: string, to?: string, highlight?: boolean }) {
   return (
     <div className={`premium-card p-6 flex flex-col h-full group ${highlight ? 'border-emerald-500/20' : ''}`}>
-      <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-6 border transition-colors ${highlight ? 'bg-emerald-500/10 border-emerald-500/20 group-hover:bg-emerald-500/20' : 'bg-zinc-900 border-white/5 group-hover:border-white/10'}`}>
+      <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-6 border transition-colors ${highlight ? 'bg-emerald-500/10 border-emerald-500/20 group-hover:bg-emerald-500/20' : 'bg-zinc-900 border-zinc-800 group-hover:border-zinc-800'}`}>
         {icon}
       </div>
       <h3 className="text-lg font-medium text-zinc-100 mb-2">{title}</h3>
@@ -480,15 +480,15 @@ function StepCard({ number, title, description, icon }: { number: string, title:
   return (
     <div className="relative md:pl-20 group">
       {/* Node on the line */}
-      <div className="absolute left-[23px] top-8 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#0C0C0C] border border-zinc-600 group-hover:border-emerald-500 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.5)] transition-all duration-300 hidden md:block z-10" />
+      <div className="absolute left-[23px] top-8 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-surface border border-zinc-600 group-hover:border-emerald-500 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.5)] transition-all duration-300 hidden md:block z-10" />
       
       <div className="premium-card p-6 flex flex-col sm:flex-row gap-6 relative overflow-hidden border-l-2 border-l-transparent group-hover:border-l-emerald-500 transition-all duration-300">
         {/* Subtle hover gradient */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.02] rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-zinc-900/[0.02] rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         
         <div className="flex-shrink-0 pt-1">
           <div className="text-xs font-mono text-zinc-500 mb-3">{number}</div>
-          <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-300">
+          <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
             {icon}
           </div>
         </div>
@@ -501,3 +501,4 @@ function StepCard({ number, title, description, icon }: { number: string, title:
     </div>
   );
 }
+
