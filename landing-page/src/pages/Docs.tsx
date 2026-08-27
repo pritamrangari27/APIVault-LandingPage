@@ -40,12 +40,12 @@ export default function Docs() {
           </div>
 
           <h2 className="text-2xl font-medium text-zinc-100 mb-4 mt-12">Getting Started</h2>
-          <div className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-6 font-mono text-sm text-zinc-300 mb-12 leading-loose shadow-xl">
-            <div className="text-zinc-500 mb-2 font-sans text-xs uppercase tracking-wider"># 1. Start the analysis agent</div>
-            <div><span className="text-emerald-400">$</span> apivault analyze ./openapi.json --strict</div>
+          <div className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-4 sm:p-6 font-mono text-xs sm:text-sm text-zinc-300 mb-12 leading-loose shadow-xl overflow-x-auto">
+            <div className="text-zinc-500 mb-2 font-sans text-[10px] sm:text-xs uppercase tracking-wider"># 1. Start the analysis agent</div>
+            <div className="whitespace-nowrap"><span className="text-emerald-400">$</span> apivault analyze ./openapi.json --strict</div>
             
-            <div className="text-zinc-500 mt-6 mb-2 font-sans text-xs uppercase tracking-wider"># 2. View the generated report</div>
-            <div><span className="text-emerald-400">$</span> cat ./apivault-report.json</div>
+            <div className="text-zinc-500 mt-6 mb-2 font-sans text-[10px] sm:text-xs uppercase tracking-wider"># 2. View the generated report</div>
+            <div className="whitespace-nowrap"><span className="text-emerald-400">$</span> cat ./apivault-report.json</div>
           </div>
 
           <h2 className="text-2xl font-medium text-zinc-100 mb-6 mt-12">Security Rules & Compliance</h2>

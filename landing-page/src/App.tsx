@@ -1,16 +1,21 @@
+import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Landing from './pages/Landing';
 import Docs from './pages/Docs';
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-oled text-zinc-100 selection:bg-emerald-500/20 selection:text-emerald-400 font-sans font-light flex flex-col">
       
       {/* Navbar - Shared across pages */}
       <nav className="fixed w-full z-50 top-0 glass-nav transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group cursor-pointer">
+          <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
             <span className="text-lg font-medium tracking-tight">APIVault</span>
           </Link>
           
@@ -24,11 +29,36 @@ function App() {
             <button className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
               Sign In
             </button>
-            <button className="bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
+            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
               Start Building
+            </button>
+            <button 
+              className="md:hidden text-zinc-300 hover:text-white transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden absolute top-16 left-0 w-full bg-[#0A0A0A] border-b border-white/10 shadow-2xl py-6 px-6 flex flex-col gap-6"
+            >
+              <Link to="/#features" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Platform</Link>
+              <Link to="/#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Engine</Link>
+              <Link to="/docs" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Documentation</Link>
+              <div className="h-px w-full bg-white/5 my-2" />
+              <button className="text-left text-zinc-300 hover:text-white font-medium text-lg">Sign In</button>
+              <button className="bg-emerald-500 text-oled px-4 py-3 rounded-xl font-medium text-center mt-2 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)]">Start Building</button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Main Content Area */}

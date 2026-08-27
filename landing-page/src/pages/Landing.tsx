@@ -110,7 +110,7 @@ export default function Landing() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.2 }}
-                className="absolute top-24 left-1/4 md:left-1/3 bg-[#0A0A0A] border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[280px] sm:w-[320px] backdrop-blur-xl z-20"
+                className="absolute top-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-1/3 bg-[#0A0A0A] border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[90%] sm:w-[320px] backdrop-blur-xl z-20"
               >
                 <div className="flex gap-3">
                   <div className="mt-0.5">
@@ -309,7 +309,7 @@ export default function Landing() {
             <p className="text-zinc-400 font-light text-lg mb-8">
               Generate auditor-ready reports in seconds. We automatically map API vulnerabilities to major regulatory frameworks, saving your team hundreds of manual hours.
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ComplianceBadge name="SOC 2 Type II" />
               <ComplianceBadge name="HIPAA" />
               <ComplianceBadge name="GDPR" />
