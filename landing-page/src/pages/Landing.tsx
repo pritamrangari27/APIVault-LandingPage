@@ -388,19 +388,7 @@ export default function Landing() {
          </div>
       </section>
 
-      {/* Footer CTA */}
-      <section className="py-24 px-6 border-t border-white/5 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl font-medium tracking-tight mb-6">Ready to secure your endpoints?</h2>
-          <p className="text-zinc-400 mb-10 text-lg font-light">Integrate APIVault into your CI/CD pipeline and block vulnerabilities before they ever reach production.</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-zinc-100 hover:bg-white text-oled px-8 py-3 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
-              Start Free Trial
-            </button>
-          </div>
-        </div>
-      </section>
+
     </>
   );
 }
