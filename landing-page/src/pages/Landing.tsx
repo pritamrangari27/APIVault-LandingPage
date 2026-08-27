@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, Lock, Database, Globe } from 'lucide-react';
+import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, Lock, Database, Globe, CheckCircle2, FileText, Bell } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -301,6 +301,90 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Compliance Section */}
+      <section className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-16 items-center">
+          <div className="md:w-1/2">
+            <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Automated Compliance Reporting</h2>
+            <p className="text-zinc-400 font-light text-lg mb-8">
+              Generate auditor-ready reports in seconds. We automatically map API vulnerabilities to major regulatory frameworks, saving your team hundreds of manual hours.
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              <ComplianceBadge name="SOC 2 Type II" />
+              <ComplianceBadge name="HIPAA" />
+              <ComplianceBadge name="GDPR" />
+              <ComplianceBadge name="PCI-DSS v4.0" />
+            </div>
+            <button className="mt-8 flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors group">
+              <FileText className="w-4 h-4 group-hover:scale-110 transition-transform" /> Download Sample Report
+            </button>
+          </div>
+          <div className="md:w-1/2 w-full">
+            <div className="premium-card p-6 border-white/10 bg-[#0C0C0C] relative overflow-hidden group shadow-2xl rounded-2xl">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <FileText className="w-32 h-32 text-emerald-500" />
+              </div>
+              <h3 className="text-zinc-100 font-medium mb-6 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-emerald-500" /> Compliance Checklist Status
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                  <span className="text-zinc-400 text-sm">Data Encryption in Transit</span>
+                  <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded">
+                    <CheckCircle2 className="w-3 h-3" /> PASS
+                  </div>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                  <span className="text-zinc-400 text-sm">Strong Authentication Mechanisms</span>
+                  <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded">
+                    <CheckCircle2 className="w-3 h-3" /> PASS
+                  </div>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                  <span className="text-zinc-400 text-sm">Access Control (BOLA/BFLA)</span>
+                  <div className="flex items-center gap-1.5 text-rose-400 text-xs font-medium bg-rose-500/10 px-2 py-1 rounded">
+                    <AlertCircle className="w-3 h-3" /> 2 ISSUES
+                  </div>
+                </div>
+                <div className="flex justify-between items-center pb-3">
+                  <span className="text-zinc-400 text-sm">Audit Logging Capabilities</span>
+                  <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-medium bg-emerald-500/10 px-2 py-1 rounded">
+                    <CheckCircle2 className="w-3 h-3" /> PASS
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Alerting Section */}
+      <section className="py-24 px-6 relative z-10 bg-[#0A0A0A] border-t border-white/5 overflow-hidden">
+         <div className="max-w-7xl mx-auto text-center">
+            <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Real-time Alerting & Remediation</h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto font-light text-lg mb-16">
+              When a critical vulnerability is detected, APIVault alerts the right team immediately with full context, payload traces, and AI-generated remediation patches.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              <AlertingFeature 
+                icon={<Bell className="w-5 h-5 text-indigo-400" />}
+                title="Instant Notifications"
+                description="Route alerts via Slack, Microsoft Teams, or PagerDuty based on severity and endpoint ownership."
+              />
+              <AlertingFeature 
+                icon={<Layers className="w-5 h-5 text-blue-400" />}
+                title="Jira Auto-Ticketing"
+                description="Automatically create Jira tickets containing vulnerability details, CVSS scores, and reproduction steps."
+              />
+              <AlertingFeature 
+                icon={<Cpu className="w-5 h-5 text-purple-400" />}
+                title="AI Auto-Fixes"
+                description="Generate ready-to-merge pull requests with fixes for common flaws like missing authorization checks."
+              />
+            </div>
+         </div>
+      </section>
+
       {/* Footer CTA */}
       <section className="py-24 px-6 border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -318,6 +402,27 @@ export default function Landing() {
         </div>
       </section>
     </>
+  );
+}
+
+function ComplianceBadge({ name }: { name: string }) {
+  return (
+    <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-zinc-900 border border-white/5 hover:border-emerald-500/30 transition-colors">
+      <span className="text-zinc-300 text-sm font-medium">{name}</span>
+      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+    </div>
+  );
+}
+
+function AlertingFeature({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+  return (
+    <div className="premium-card p-6 flex flex-col text-left group border-white/5 hover:border-white/10 transition-colors">
+      <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+        {icon}
+      </div>
+      <h3 className="text-zinc-100 font-medium mb-2">{title}</h3>
+      <p className="text-zinc-400 text-sm font-light leading-relaxed">{description}</p>
+    </div>
   );
 }
 
