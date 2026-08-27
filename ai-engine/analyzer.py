@@ -1,67 +1,54 @@
 import os
+import json
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
-from models import EndpointSpec, AnalysisResult
-import json
+from models import AnalysisDataInput, ReportResponse
 
 # Load environment variables (like GOOGLE_API_KEY)
 load_dotenv()
 
 # Initialize the Gemini model
-llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro", temperature=0)
 
 # Use structured output to force Gemini to return JSON matching our Pydantic model
-structured_llm = llm.with_structured_output(AnalysisResult)
+structured_llm = llm.with_structured_output(ReportResponse)
 
-FINDER_PROMPT = ChatPromptTemplate.from_template("""
-You are an expert API security auditor. Analyze this OpenAPI endpoint specification:
+REPORT_GENERATOR_PROMPT = ChatPromptTemplate.from_template("""
+You are an Expert Application Security Architect. Your task is to generate a comprehensive, executive-level security report based on the findings from static and dynamic analysis.
 
-Endpoint: {method} {path}
-Specification:
-{spec_content}
+Project Name: {project_name}
 
-Find any security vulnerabilities based on the OWASP API Security Top 10 (e.g., Broken Auth, SQL injection, Missing Rate Limits, BOLA, IDOR, sensitive data exposure).
-Provide concrete code fixes in your response. 
+=== STATIC ANALYSIS FINDINGS ===
+{static_analysis}
+================================
+
+=== DYNAMIC ANALYSIS FINDINGS ===
+{dynamic_analysis}
+=================================
+
+Instructions:
+1. Synthesize the findings from both static and dynamic analysis.
+2. Identify cross-cutting vulnerabilities and eliminate any obvious false positives.
+3. Group findings by severity (Critical, High, Medium, Low).
+4. Provide actionable remediation steps and architectural improvements.
+5. Format your response clearly in professional Markdown format.
+
+Your output must be a well-structured Markdown string.
 """)
 
-REVIEWER_PROMPT = ChatPromptTemplate.from_template("""
-You are a Senior Security Reviewer. You are reviewing the findings of a junior auditor.
-Here is the original endpoint:
-Endpoint: {method} {path}
-Specification:
-{spec_content}
-
-Here are the junior auditor's findings (in JSON format):
-{finder_json}
-
-Your job is to:
-1. Remove any "false positive" vulnerabilities that are not actually issues.
-2. Improve the fix code if it's incorrect or incomplete.
-3. Improve the architectural suggestions.
-
-Return the finalized analysis.
-""")
-
-async def analyze_endpoint(endpoint: EndpointSpec) -> AnalysisResult:
-    # Agent 1: The Finder
-    finder_chain = FINDER_PROMPT | structured_llm
-    finder_result = await finder_chain.ainvoke({
-        "method": endpoint.method,
-        "path": endpoint.path,
-        "spec_content": endpoint.spec_content
+async def generate_comprehensive_report(data: AnalysisDataInput) -> ReportResponse:
+    # Convert arbitrary JSON payload to formatted string for the prompt
+    static_str = json.dumps(data.static_analysis, indent=2) if not isinstance(data.static_analysis, str) else data.static_analysis
+    dynamic_str = json.dumps(data.dynamic_analysis, indent=2) if not isinstance(data.dynamic_analysis, str) else data.dynamic_analysis
+    
+    # Run the prompt through the structured LLM chain
+    chain = REPORT_GENERATOR_PROMPT | structured_llm
+    
+    result = await chain.ainvoke({
+        "project_name": data.project_name,
+        "static_analysis": static_str,
+        "dynamic_analysis": dynamic_str
     })
     
-    # We must serialize the finder_result back to JSON string to pass into the reviewer prompt
-    finder_json_str = finder_result.model_dump_json()
-
-    # Agent 2: The Reviewer
-    reviewer_chain = REVIEWER_PROMPT | structured_llm
-    final_result = await reviewer_chain.ainvoke({
-        "method": endpoint.method,
-        "path": endpoint.path,
-        "spec_content": endpoint.spec_content,
-        "finder_json": finder_json_str
-    })
-    
-    return final_result
+    return result
