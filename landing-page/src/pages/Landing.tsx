@@ -150,17 +150,20 @@ export default function Landing() {
               icon={<Shield className="w-5 h-5 text-zinc-400" />}
               title="OWASP Framework"
               description="Automatically maps findings to the OWASP API Top 10, including BOLA, mass assignment, and excessive data exposure."
+              to="/feature/owasp"
             />
             <FeatureCard 
               icon={<Code2 className="w-5 h-5 text-emerald-500" />}
               title="Static Rule Engine"
               description="Fast, deterministic engine written in Java Spring Boot that runs against the spec structure instantly with zero false positives."
               highlight={true}
+              to="/feature/static-engine"
             />
             <FeatureCard 
               icon={<Search className="w-5 h-5 text-blue-400" />}
               title="AI Judgment Layer"
               description="Python heuristic service that evaluates business logic flaws and generates context-aware remediation code."
+              to="/feature/ai-judgment"
             />
           </div>
         </div>

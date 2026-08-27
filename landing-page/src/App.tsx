@@ -7,6 +7,9 @@ import Landing from './pages/Landing';
 import Docs from './pages/Docs';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import OwaspFeature from './pages/OwaspFeature';
+import StaticEngineFeature from './pages/StaticEngineFeature';
+import AiFeature from './pages/AiFeature';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -70,6 +73,9 @@ function App() {
           <Route path="/docs" element={<Docs />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/feature/owasp" element={<OwaspFeature />} />
+          <Route path="/feature/static-engine" element={<StaticEngineFeature />} />
+          <Route path="/feature/ai-judgment" element={<AiFeature />} />
         </Routes>
       </main>
 
