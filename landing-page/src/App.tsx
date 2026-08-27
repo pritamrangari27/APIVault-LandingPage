@@ -24,11 +24,7 @@ function App() {
             <span className="text-lg font-medium tracking-tight">APIVault</span>
           </Link>
           
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            <Link to="/#features" className="hover:text-zinc-100 transition-colors">Platform</Link>
-            <Link to="/#how-it-works" className="hover:text-zinc-100 transition-colors">Engine</Link>
-            <Link to="/docs" className="hover:text-zinc-100 transition-colors">Documentation</Link>
-          </div>
+
           
           <div className="flex items-center gap-4">
             <button className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
@@ -55,10 +51,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden absolute top-16 left-0 w-full bg-[#0A0A0A] border-b border-white/10 shadow-2xl py-6 px-6 flex flex-col gap-6"
             >
-              <Link to="/#features" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Platform</Link>
-              <Link to="/#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Engine</Link>
-              <Link to="/docs" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:text-white font-medium text-lg">Documentation</Link>
-              <div className="h-px w-full bg-white/5 my-2" />
+
               <button className="text-left text-zinc-300 hover:text-white font-medium text-lg">Sign In</button>
               <button className="bg-emerald-500 text-oled px-4 py-3 rounded-xl font-medium text-center mt-2 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)]">Start Building</button>
             </motion.div>
