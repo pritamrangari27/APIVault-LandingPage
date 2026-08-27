@@ -22,7 +22,20 @@
 }
 
 body {
-  @apply bg-oled text-zinc-100 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-400;
+  @apply bg-oled text-zinc-100 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-400 transition-colors duration-300;
+}
+
+:root.light {
+  --color-oled: #F4F1EA; /* Warm cream background from frontend-design */
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #E9ECEF;
+  
+  --color-zinc-100: #18181B; /* text color */
+  --color-zinc-300: #3F3F46; /* slightly lighter text */
+  --color-zinc-400: #52525B;
+  --color-zinc-500: #71717A;
+  --color-zinc-800: #E4E4E7; /* borders */
+  --color-zinc-900: #FFFFFF; /* backgrounds */
 }
 
 /* Premium utilities */

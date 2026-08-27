@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Landing from './pages/Landing';
@@ -14,6 +14,11 @@ import AnalyzePage from './pages/AnalyzePage';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('light', !isDark);
+  }, [isDark]);
 
   return (
     <div className="min-h-screen bg-oled text-zinc-100 selection:bg-emerald-500/20 selection:text-emerald-400 font-sans font-light flex flex-col">
@@ -28,10 +33,17 @@ function App() {
 
           
           <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setIsDark(!isDark)}
+              className="p-2 rounded-full hover:bg-white/5 text-zinc-400 hover:text-zinc-100 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <button className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
               Sign In
             </button>
-            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
+            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
               Start Building
             </button>
             <button 
