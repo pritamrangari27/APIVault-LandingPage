@@ -43,7 +43,7 @@ function App() {
             <button className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
               Sign In
             </button>
-            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
+            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)] border border-border-subtle">
               Start Building
             </button>
             <button 
@@ -66,7 +66,7 @@ function App() {
             >
 
               <button className="text-left text-zinc-300 hover:text-white font-medium text-lg">Sign In</button>
-              <button className="bg-emerald-500 text-oled px-4 py-3 rounded-xl font-medium text-center mt-2 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)]">Start Building</button>
+              <button className="bg-emerald-500 text-oled px-4 py-3 rounded-xl font-medium text-center mt-2 shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] border border-border-subtle">Start Building</button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -104,3 +104,4 @@ function App() {
 }
 
 export default App;
+

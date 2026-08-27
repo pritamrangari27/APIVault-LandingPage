@@ -19,6 +19,8 @@
   --color-zinc-500: #71717A;
   --color-zinc-800: #27272A;
   --color-zinc-900: #18181B;
+  
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -34,8 +36,10 @@ body {
   --color-zinc-300: #3F3F46; /* slightly lighter text */
   --color-zinc-400: #52525B;
   --color-zinc-500: #71717A;
-  --color-zinc-800: #E4E4E7; /* borders */
+  --color-zinc-800: rgba(0, 0, 0, 0.15); /* darker borders for light mode boxes */
   --color-zinc-900: #FFFFFF; /* backgrounds */
+  
+  --color-border-subtle: rgba(0, 0, 0, 0.2);
 }
 
 /* Premium utilities */
