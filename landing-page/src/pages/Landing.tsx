@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal } from 'lucide-react';
+import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, Lock, Database, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -243,6 +243,64 @@ export default function Landing() {
         </div>
       </section>
       
+      {/* Vulnerability Coverage Section */}
+      <section className="py-24 px-6 relative z-10 bg-oled border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-16 items-center">
+            <div className="md:w-1/2">
+              <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Comprehensive Coverage</h2>
+              <p className="text-zinc-400 font-light text-lg mb-10">
+                We go beyond standard SAST/DAST tools by understanding your API's business logic, discovering complex authorization bypasses and data exposure risks.
+              </p>
+              <div className="space-y-6">
+                <CoverageItem title="Broken Object Level Auth (BOLA)" description="Detects when endpoints fail to validate object ownership, preventing data leakage across tenants." />
+                <CoverageItem title="Mass Assignment" description="Identifies models vulnerable to unauthorized property binding during creation or updates." />
+                <CoverageItem title="Excessive Data Exposure" description="Flags responses that leak sensitive user data unintentionally by analyzing response schemas." />
+                <CoverageItem title="Broken Function Level Auth" description="Finds privileged administrative endpoints accessible by standard user roles." />
+              </div>
+            </div>
+            <div className="md:w-1/2 w-full relative">
+               <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/20 to-transparent blur-3xl" />
+               <div className="premium-card p-6 md:p-8 border-white/10 bg-[#0C0C0C] shadow-2xl relative z-10 rounded-2xl">
+                 <div className="flex items-center justify-between border-b border-white/5 pb-5 mb-6">
+                    <div className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                      <Shield className="w-4 h-4 text-zinc-400" />
+                      OWASP API Security Top 10
+                    </div>
+                    <div className="text-xs font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">98% Coverage</div>
+                 </div>
+                 <div className="space-y-5">
+                    <CoverageBar name="API1:2023 - BOLA" percent={100} />
+                    <CoverageBar name="API2:2023 - Broken Authentication" percent={95} />
+                    <CoverageBar name="API3:2023 - BOPA" percent={100} />
+                    <CoverageBar name="API4:2023 - Unrestricted Resource Cons." percent={90} />
+                    <CoverageBar name="API5:2023 - BFLA" percent={98} />
+                 </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations Section */}
+      <section className="py-24 px-6 relative z-10 bg-[#0A0A0A] border-t border-white/5 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Seamless CI/CD Integration</h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto font-light text-lg">Shift left without slowing down. APIVault integrates natively into your existing workflows, blocking vulnerable PRs instantly.</p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <IntegrationBadge name="GitHub Actions" icon={<GitBranch className="w-5 h-5" />} color="text-zinc-100" />
+            <IntegrationBadge name="GitLab CI" icon={<GitBranch className="w-5 h-5" />} color="text-orange-400" />
+            <IntegrationBadge name="Jenkins" icon={<Terminal className="w-5 h-5" />} color="text-red-400" />
+            <IntegrationBadge name="CircleCI" icon={<Activity className="w-5 h-5" />} color="text-zinc-100" />
+            <IntegrationBadge name="Bitbucket" icon={<GitBranch className="w-5 h-5" />} color="text-blue-400" />
+          </div>
+        </div>
+      </section>
+
       {/* Footer CTA */}
       <section className="py-24 px-6 border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -260,6 +318,53 @@ export default function Landing() {
         </div>
       </section>
     </>
+  );
+}
+
+function IntegrationBadge({ name, icon, color }: { name: string, icon: React.ReactNode, color: string }) {
+  return (
+    <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-[#0F0F0F] border border-white/5 hover:border-white/10 hover:bg-[#151515] transition-all cursor-pointer group shadow-lg">
+      <div className={`${color} group-hover:scale-110 transition-transform duration-300`}>
+        {icon}
+      </div>
+      <span className="text-zinc-300 font-medium text-sm">{name}</span>
+    </div>
+  );
+}
+
+function CoverageItem({ title, description }: { title: string, description: string }) {
+  return (
+    <div className="flex gap-4 group">
+      <div className="mt-1 w-6 h-6 rounded-full bg-rose-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-500/20 transition-colors">
+        <div className="w-2 h-2 rounded-full bg-rose-500 group-hover:shadow-[0_0_8px_rgba(244,63,94,0.8)] transition-all" />
+      </div>
+      <div>
+        <h4 className="text-zinc-100 font-medium text-sm mb-1">{title}</h4>
+        <p className="text-zinc-500 text-sm font-light leading-relaxed">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function CoverageBar({ name, percent }: { name: string, percent: number }) {
+  return (
+    <div>
+      <div className="flex justify-between text-xs text-zinc-400 mb-2">
+        <span className="font-medium text-zinc-300">{name}</span>
+        <span>{percent}%</span>
+      </div>
+      <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+        <motion.div 
+          initial={{ width: 0 }}
+          whileInView={{ width: `${percent}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+          className="h-full bg-rose-500/80 rounded-full relative" 
+        >
+          <div className="absolute inset-0 bg-white/20 w-full h-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }} />
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
