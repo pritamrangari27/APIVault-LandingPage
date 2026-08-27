@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Landing from './pages/Landing';
 import Docs from './pages/Docs';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,6 +68,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/docs" element={<Docs />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </main>
 
@@ -77,8 +81,8 @@ function App() {
           </div>
           <div className="flex gap-6 text-sm text-zinc-500 font-light">
             <Link to="/docs" className="hover:text-zinc-300 transition-colors">Documentation</Link>
-            <a href="#" className="hover:text-zinc-300 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-zinc-300 transition-colors">Terms</a>
+            <Link to="/privacy" className="hover:text-zinc-300 transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-zinc-300 transition-colors">Terms</Link>
           </div>
         </div>
       </footer>
