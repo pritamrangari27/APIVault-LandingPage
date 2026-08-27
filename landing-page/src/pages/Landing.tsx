@@ -398,9 +398,6 @@ export default function Landing() {
             <button className="bg-zinc-100 hover:bg-white text-oled px-8 py-3 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]">
               Start Free Trial
             </button>
-            <button className="bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-100 px-8 py-3 rounded-full text-sm font-medium transition-all">
-              Contact Sales
-            </button>
           </div>
         </div>
       </section>
