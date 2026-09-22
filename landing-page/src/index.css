@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
@@ -28,18 +28,21 @@ body {
 }
 
 :root.light {
-  --color-oled: #F4F1EA; /* Warm cream background from frontend-design */
-  --color-surface: #FFFFFF;
-  --color-surface-hover: #E9ECEF;
+  /* Soft Zinc Aesthetic (Reduces 'too white' glare) */
+  --color-oled: #F4F4F5; /* Main background (soft zinc) */
+  --color-surface: #FFFFFF; /* Cards/surfaces pop in pure white */
+  --color-surface-hover: #FAFAFA;
   
-  --color-zinc-100: #18181B; /* text color */
-  --color-zinc-300: #3F3F46; /* slightly lighter text */
+  --color-zinc-100: #18181B; /* Primary Text (near black) */
+  --color-zinc-300: #3F3F46; /* Secondary Text */
   --color-zinc-400: #52525B;
   --color-zinc-500: #71717A;
-  --color-zinc-800: rgba(0, 0, 0, 0.15); /* darker borders for light mode boxes */
-  --color-zinc-900: #FFFFFF; /* backgrounds */
   
-  --color-border-subtle: rgba(0, 0, 0, 0.2);
+  /* Elements */
+  --color-zinc-800: #E4E4E7; /* Light borders (zinc-200 equivalent) */
+  --color-zinc-900: #F4F4F5; /* Inner elements like icon boxes */
+  
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
 }
 
 /* Premium utilities */

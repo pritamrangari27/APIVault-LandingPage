@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, ArrowUp, ArrowDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Landing from './pages/Landing';
@@ -14,7 +14,7 @@ import AnalyzePage from './pages/AnalyzePage';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', !isDark);
@@ -27,7 +27,7 @@ function App() {
       <nav className="fixed w-full z-50 top-0 glass-nav transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
-            <span className="text-lg font-medium tracking-tight">APIVault</span>
+            <AnimatedLogo />
           </Link>
           
 
@@ -43,7 +43,7 @@ function App() {
             <button className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
               Sign In
             </button>
-            <button className="hidden md:block bg-zinc-100 hover:bg-white text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)] border border-border-subtle">
+            <button className="hidden md:block bg-zinc-100 hover:bg-zinc-300 text-oled px-4 py-1.5 rounded-full text-sm font-medium transition-all shadow-[0_0_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)] border border-border-subtle">
               Start Building
             </button>
             <button 
@@ -87,21 +87,92 @@ function App() {
       </main>
 
       {/* Footer - Shared across pages */}
-      <footer className="border-t border-white/5 py-10 px-6 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 text-zinc-400">
-            <span className="font-medium text-sm tracking-tight text-zinc-300">APIVault Security</span>
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-10 px-6 mt-auto">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-2">
+            <span className="font-medium text-sm tracking-tight text-white">APIVault Security</span>
           </div>
-          <div className="flex gap-6 text-sm text-zinc-500 font-light">
-            <Link to="/docs" className="hover:text-zinc-300 transition-colors">Documentation</Link>
-            <Link to="/privacy" className="hover:text-zinc-300 transition-colors">Privacy</Link>
-            <Link to="/terms" className="hover:text-zinc-300 transition-colors">Terms</Link>
+          <div className="flex items-center justify-center">
+            <span className="text-sm text-gray-400 font-light">Made by Pritam Rangari</span>
+          </div>
+          <div className="flex justify-center md:justify-end gap-6 text-sm text-gray-400 font-light">
+            <Link to="/docs" className="hover:text-white transition-colors">Documentation</Link>
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
       </footer>
+      <ScrollButton />
     </div>
   );
 }
+
+const AnimatedLogo = () => {
+  return (
+    <div className="flex items-center text-xl font-bold tracking-tighter">
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]">
+        APIVault
+      </span>
+    </div>
+  );
+};
+
+const ScrollButton = () => {
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY < 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleClick = () => {
+    if (isAtTop) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <motion.button
+      onClick={handleClick}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.2)] backdrop-blur-md transition-all group"
+      aria-label="Scroll"
+    >
+      <div className="relative w-6 h-6 flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          {isAtTop ? (
+            <motion.div
+              key="down"
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowDown className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="up"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.button>
+  );
+};
 
 export default App;
 
