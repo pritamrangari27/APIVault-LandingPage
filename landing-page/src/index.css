@@ -21,6 +21,8 @@
   --color-zinc-900: #18181B;
   
   --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-ambient-shadow: rgba(52, 211, 153, 0.03); /* Subtle emerald glow in dark mode */
+  --color-ambient-glow: rgba(6, 182, 212, 0.03); /* Subtle cyan glow in dark mode */
 }
 
 body {
@@ -43,6 +45,8 @@ body {
   --color-zinc-900: #F4F4F5; /* Inner elements like icon boxes */
   
   --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-ambient-shadow: rgba(0, 0, 0, 0.03); /* Black shadow blob */
+  --color-ambient-glow: rgba(0, 0, 0, 0.04); /* Black shadow blob */
 }
 
 /* Premium utilities */

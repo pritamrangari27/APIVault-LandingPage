@@ -8,8 +8,10 @@ export default function Landing() {
     <>
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 lg:pt-24 lg:pb-32 px-6 overflow-hidden">
-        {/* Subtle background gradient mesh */}
+        {/* Subtle background gradient mesh & dark shadows */}
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] opacity-30 pointer-events-none" />
+        <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-ambient-shadow rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[60%] left-[-15%] w-[500px] h-[500px] bg-ambient-glow rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto text-center relative z-10 flex flex-col items-center">
 
@@ -160,8 +162,9 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto">
+      <section id="features" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800 overflow-hidden">
+        <div className="absolute top-[30%] left-[10%] w-[700px] h-[700px] bg-ambient-shadow rounded-full blur-[150px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Enterprise Grade Scanning</h2>
             <p className="text-zinc-400 max-w-2xl mx-auto font-light text-lg">Our two-layer analysis catches structural problems deterministically, and complex logic flaws using AI.</p>
@@ -192,8 +195,9 @@ export default function Landing() {
       </section>
 
       {/* Engine Sequence Section */}
-      <section id="how-it-works" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+      <section id="how-it-works" className="py-24 px-6 relative z-10 bg-oled border-t border-zinc-800 overflow-hidden">
+        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-ambient-shadow rounded-full blur-[120px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 relative z-10">
           <div className="lg:w-1/3">
             <div className="sticky top-32">
               <h2 className="text-3xl font-medium tracking-tight text-zinc-100 mb-4">Dual-layer Engine</h2>
@@ -236,7 +240,7 @@ export default function Landing() {
 
           <div className="lg:w-2/3 relative">
             {/* Vertical Line */}
-            <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-emerald-500/20 via-zinc-800 to-transparent hidden md:block" />
+            <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-emerald-500/20 via-zinc-400/30 to-transparent hidden md:block" />
 
             <div className="space-y-12">
               <StepCard
