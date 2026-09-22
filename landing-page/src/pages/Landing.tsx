@@ -85,18 +85,18 @@ export default function Landing() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="max-w-5xl mx-auto mt-24 relative z-10"
         >
-          <div className="rounded-2xl border border-zinc-800 bg-surface overflow-hidden shadow-2xl flex flex-col font-mono text-sm leading-relaxed text-zinc-300">
+          <div className="rounded-2xl border border-[#27272a] bg-[#0A0A0A] overflow-hidden shadow-2xl flex flex-col font-mono text-sm leading-relaxed text-gray-300">
             {/* IDE Header */}
-            <div className="h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 justify-between">
+            <div className="h-12 bg-[#18181b] border-b border-[#27272a] flex items-center px-4 justify-between">
               <div className="flex items-center gap-2">
                 <div className="flex gap-1.5 mr-4">
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                   <div className="w-3 h-3 rounded-full bg-zinc-800" />
                 </div>
-                <div className="flex bg-surface border-t border-x border-zinc-800 px-4 py-1.5 rounded-t-lg items-center gap-2 translate-y-[6px]">
+                <div className="flex bg-[#0A0A0A] border-t border-x border-[#27272a] px-4 py-1.5 rounded-t-lg items-center gap-2 translate-y-[6px]">
                   <FileCode2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="text-xs font-medium text-zinc-300">openapi.json</span>
+                  <span className="text-xs font-medium text-gray-300">openapi.json</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -109,7 +109,7 @@ export default function Landing() {
             {/* IDE Body */}
             <div className="flex flex-1 p-4 relative">
               {/* Line Numbers */}
-              <div className="flex flex-col text-right w-8 text-zinc-700 select-none mr-6 text-xs">
+              <div className="flex flex-col text-right w-8 text-gray-600 select-none mr-6 text-xs">
                 <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
               </div>
 
@@ -134,22 +134,22 @@ export default function Landing() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.2 }}
-                className="absolute top-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-1/3 bg-surface border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[90%] sm:w-[320px] backdrop-blur-xl z-20"
+                className="absolute top-24 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-1/3 bg-[#18181b] border border-rose-500/30 shadow-2xl rounded-xl p-4 w-[90%] sm:w-[320px] backdrop-blur-xl z-20"
               >
                 <div className="flex gap-3">
                   <div className="mt-0.5">
                     <AlertCircle className="w-5 h-5 text-rose-500" />
                   </div>
                   <div>
-                    <h4 className="text-zinc-100 font-sans font-medium text-sm mb-1">Broken Object Level Auth</h4>
-                    <p className="text-zinc-400 font-sans text-xs leading-relaxed mb-3">
+                    <h4 className="text-white font-sans font-medium text-sm mb-1">Broken Object Level Auth</h4>
+                    <p className="text-gray-400 font-sans text-xs leading-relaxed mb-3">
                       Endpoint <code className="text-rose-400 bg-rose-500/10 px-1 py-0.5 rounded">GET /users/&#123;id&#125;</code> exposes resources without validating ownership parameters.
                     </p>
                     <div className="flex gap-2">
-                      <button className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs px-3 py-1.5 rounded-md font-sans transition-colors">
+                      <button className="bg-[#27272a] hover:bg-[#3f3f46] text-gray-300 text-xs px-3 py-1.5 rounded-md font-sans transition-colors">
                         View Trace
                       </button>
-                      <button className="bg-rose-500 hover:bg-rose-600 text-zinc-100 text-xs px-3 py-1.5 rounded-md font-sans font-medium transition-colors">
+                      <button className="bg-rose-500 hover:bg-rose-600 text-white text-xs px-3 py-1.5 rounded-md font-sans font-medium transition-colors">
                         Auto-Fix
                       </button>
                     </div>
@@ -560,13 +560,13 @@ function CoverageBar({ name, percent }: { name: string, percent: number }) {
         <span className="font-medium text-zinc-300">{name}</span>
         <span>{percent}%</span>
       </div>
-      <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+      <div className="w-full h-1.5 bg-zinc-800/50 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${percent}%` }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-          className="h-full bg-rose-500/80 rounded-full relative"
+          className="h-full bg-gradient-to-r from-rose-400/60 to-rose-500/80 rounded-full relative"
         >
           <div className="absolute inset-0 bg-white/20 w-full h-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)' }} />
         </motion.div>
@@ -578,18 +578,20 @@ function CoverageBar({ name, percent }: { name: string, percent: number }) {
 function FeatureCard({ icon, title, description, to = "/docs", highlight = false }: { icon: React.ReactNode, title: string, description: string, to?: string, highlight?: boolean }) {
   return (
     <motion.div 
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className={`premium-card p-8 flex flex-col h-full group relative overflow-hidden bg-surface ${highlight ? 'border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.1)]' : 'border-zinc-800 hover:border-zinc-700'}`}
+      whileHover={{ y: -6, transition: { duration: 0.3 } }}
+      className={`premium-card p-6 md:p-7 flex flex-col h-full group relative overflow-hidden bg-surface ${highlight ? 'border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.1)]' : 'border-zinc-800 hover:border-zinc-700'}`}
     >
+      {/* Persistent subtle background texture */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-zinc-800/10 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center mb-6 border transition-all duration-300 ${highlight ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_15px_rgba(52,211,153,0.3)]' : 'bg-zinc-900 border-zinc-800 text-zinc-300 group-hover:border-zinc-600 group-hover:text-emerald-400'}`}>
+      <div className={`relative z-10 w-10 h-10 rounded-xl flex items-center justify-center mb-5 border transition-all duration-300 ${highlight ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500/20 group-hover:shadow-[0_0_15px_rgba(52,211,153,0.3)]' : 'bg-zinc-900 border-zinc-800 text-zinc-300 group-hover:border-zinc-600 group-hover:text-emerald-400'}`}>
         {icon}
       </div>
-      <h3 className="relative z-10 text-xl font-medium text-zinc-100 mb-3 group-hover:text-emerald-300 transition-colors duration-300">{title}</h3>
-      <p className="relative z-10 text-zinc-400 text-sm leading-relaxed font-light flex-1 mb-8">{description}</p>
-      <Link to={to} className="relative z-10 mt-auto flex items-center text-sm font-medium text-zinc-500 group-hover:text-emerald-400 transition-colors cursor-pointer w-fit">
-        Explore feature <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+      <h3 className="relative z-10 text-lg font-semibold text-zinc-100 mb-2 group-hover:text-emerald-400 transition-colors duration-300">{title}</h3>
+      <p className="relative z-10 text-zinc-400 text-sm leading-relaxed font-light flex-1 mb-6">{description}</p>
+      <Link to={to} className="relative z-10 mt-auto flex items-center text-xs font-semibold text-zinc-500 group-hover:text-emerald-500 transition-colors cursor-pointer w-fit uppercase tracking-wider">
+        Explore feature <ArrowRight className="w-3.5 h-3.5 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
       </Link>
     </motion.div>
   );
@@ -603,20 +605,19 @@ function StepCard({ number, title, description, icon }: { number: string, title:
       className="relative md:pl-20 group cursor-default"
     >
       {/* Node on the line */}
-      <div className="absolute left-[23px] top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-zinc-900 border-2 border-zinc-700 group-hover:border-emerald-400 group-hover:shadow-[0_0_15px_rgba(52,211,153,0.6)] transition-all duration-300 hidden md:block z-10" />
+      <div className="absolute left-[23px] top-4 -translate-x-1/2 w-3 h-3 rounded-full bg-zinc-900 border-2 border-zinc-700 group-hover:border-emerald-400 group-hover:shadow-[0_0_15px_rgba(52,211,153,0.6)] transition-all duration-300 hidden md:block z-10" />
 
-      <div className="premium-card p-8 flex flex-col sm:flex-row gap-6 relative overflow-hidden bg-surface border-l-2 border-l-zinc-800 group-hover:border-l-emerald-400 group-hover:bg-zinc-900 transition-all duration-300">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/[0.03] rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-        <div className="flex-shrink-0 pt-1">
-          <div className="text-xs font-mono text-zinc-500 mb-3 group-hover:text-emerald-500 transition-colors">{number}</div>
-          <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-all duration-300">
+      {/* Sleek Minimalist Content */}
+      <div className="flex flex-col sm:flex-row gap-6 relative group-hover:opacity-100 transition-all duration-300">
+        <div className="flex-shrink-0 pt-1 flex flex-col items-center sm:items-start">
+          <div className="text-[10px] font-mono text-zinc-500 mb-2 group-hover:text-emerald-500 transition-colors">{number}</div>
+          <div className="w-10 h-10 rounded-full bg-zinc-900/50 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-emerald-400 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 transition-all duration-300">
             {icon}
           </div>
         </div>
 
-        <div>
-          <h3 className="text-xl font-medium text-zinc-100 mb-3 group-hover:text-emerald-300 transition-colors">{title}</h3>
+        <div className="pt-1">
+          <h3 className="text-xl font-semibold text-zinc-100 mb-2 group-hover:text-emerald-400 transition-colors">{title}</h3>
           <p className="text-zinc-400 text-sm leading-relaxed font-light">{description}</p>
         </div>
       </div>
