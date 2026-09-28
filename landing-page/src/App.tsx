@@ -14,7 +14,7 @@ import AnalyzePage from './pages/AnalyzePage';
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', !isDark);
