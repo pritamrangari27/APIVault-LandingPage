@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, CheckCircle2, FileText, Bell, MessageSquare, ChevronDown, Check, X } from 'lucide-react';
+import { Shield, Search, FileCode2, ArrowRight, Activity, Code2, AlertCircle, Layers, Cpu, Terminal, GitBranch, CheckCircle2, FileText, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -516,28 +516,7 @@ function ComplianceBadge({ name }: { name: string }) {
   );
 }
 
-function AlertingFeature({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
-  return (
-    <div className="premium-card p-6 flex flex-col text-left group border-zinc-800 hover:border-zinc-800 transition-colors">
-      <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-        {icon}
-      </div>
-      <h3 className="text-zinc-100 font-medium mb-2">{title}</h3>
-      <p className="text-zinc-400 text-sm font-light leading-relaxed">{description}</p>
-    </div>
-  );
-}
 
-function IntegrationBadge({ name, icon, color }: { name: string, icon: React.ReactNode, color: string }) {
-  return (
-    <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-surface-hover border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-all cursor-pointer group shadow-lg">
-      <div className={`${color} group-hover:scale-110 transition-transform duration-300`}>
-        {icon}
-      </div>
-      <span className="text-zinc-300 font-medium text-sm">{name}</span>
-    </div>
-  );
-}
 
 function CoverageItem({ title, description }: { title: string, description: string }) {
   return (

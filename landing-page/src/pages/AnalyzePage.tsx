@@ -13,7 +13,7 @@ export default function AnalyzePage() {
   useEffect(() => {
     if (scanStep === 'idle' || scanStep === 'complete') return;
 
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     
     if (scanStep === 'ingesting') {
       timeout = setTimeout(() => setScanStep('static'), 1500);
